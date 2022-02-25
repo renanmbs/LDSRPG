@@ -1,10 +1,10 @@
 /*Character Creation and game Intialization
-Brielle Hours Login: 5 hours
-Renan Hours Login: 5 hours*/
+Brielle Hours Login: 12 hours
+Renan Hours Login: 7 hours*/
 
 //Import libraries
-import java.util.Scanner;
-import java.util.Random;
+import java.io.*;
+import java.util.*;
 
 //Class
 public class CharacterCreation
@@ -22,7 +22,8 @@ public class CharacterCreation
     System.out.println("  Press 1 for a new game");
     System.out.println("  Press 2 to continue a game");
     System.out.println("  Press 3 for instructions");
-    System.out.println("  Press 4 to exit");
+    System.out.println("  Press 4 to try out the test character");
+    System.out.println("  Press 5 to exit");
     System.out.println("-----------------------------------------------------");
 
     //Get user's choice on menu
@@ -46,8 +47,14 @@ public class CharacterCreation
           System.out.println("Instructions? There are no instructions");
           break;
 
-      //Exit game
+      //Test Character
       case 4:
+          System.out.println("Test Character");
+          System.out.println();
+          break;
+
+      //Exit game
+      case 5:
           System.out.println("Exiting...");
           System.exit(0);
           break;
@@ -133,7 +140,24 @@ public class CharacterCreation
     System.out.println("  Athletics Talent: " + TalentAthletics);
     System.out.println();
 
-  }
+  }//End Roll
+
+  //Function to print out a grid
+  static void Grid(){
+
+   int[][] array = new int[10][10]; //Create new 10x10 array
+
+      for(int row = 0; row < 10; row++) //Rows
+      {
+      	for(int col = 0; col < 10; col++) //Columns
+      	{
+      		System.out.print(array[row][col]); //Print grid Row x Columns
+
+         }
+
+         System.out.println(); //Print Space
+      }
+  }//End Grid
 
   //Main function
   public static void main (String[] agrs)
@@ -167,26 +191,25 @@ public class CharacterCreation
         System.out.println("Character's name: " + name);
         System.out.println();
 
-        //Roll information
-        roll();
+         //Roll information
+         roll();
 
-        //Ask for reroll
-        System.out.print("Do you want to continue on with these numbers or re-roll? \nEnter 1 to Continue and 2 to Re-Roll:");
-        reroll = in.nextInt();
-        System.out.println();
+         //Ask for reroll
+         System.out.print("Do you want to continue on with these numbers or re-roll? \nEnter 1 to Continue and 2 to Re-Roll:");
+         reroll = in.nextInt();
+         System.out.println();
 
-        //If the person wants to reroll
-        while(reroll == 2){
+         //If the person wants to reroll
+         while(reroll == 2){
 
-          //Roll Again
-          roll();
+         //Roll Again
+         roll();
 
-          //Ask again for reroll
-          System.out.print("Do you want to continue on with these numbers or re-roll? \nEnter 1 to Continue and 2 to Re-Roll:");
-          reroll = in.nextInt();
-          System.out.println();
-
-        }
+         //Ask again for reroll
+         System.out.print("Do you want to continue on with these numbers or re-roll? \nEnter 1 to Continue and 2 to Re-Roll:");
+         reroll = in.nextInt();
+         System.out.println();
+         }
 
 
         //If the person is satisfied
@@ -220,6 +243,182 @@ public class CharacterCreation
       }
 
     } //End 'Continue Game'
+
+    //If 'Try out the test character' is chosen
+    if(menu == 4){
+
+       Random r = new Random (); //Generate random number
+
+       name = "Test"; //Arbitrary name
+
+       SpiritualityPoints = 0; //Spirituality points
+
+       //Weaknesses
+       Weakness = "Slacking Off";
+
+       //Resistances
+       int ResistLust = 1;
+       int ResistAnger = 10;
+       int ResistIdolality = 25;
+       int ResistVanity = 50;
+       int ResistSpeech = 75;
+       int ResistPhysical = 100;
+
+       //Talents
+       double TalentEducation = 0;
+       double TalentMusic = 0;
+       double TalentArt = 0;
+       double TalentWriting = 0;
+       double TalentSpeaking = 0;
+       double TalentAthletics = 0;
+
+       //Percent Chance
+       double percentChanceLust = 10.1;
+       double percentChanceAnger = 11;
+       double percentChanceIdol = 12.5;
+       double percentChanceVanity = 15;
+       double percentChanceSpeech = 17.5;
+       double percentChancePhysical = 20;
+       double percentChanceRandom = 0;
+
+       //Holds the value of the tile being placed
+       String tile = "";
+
+       System.out.println("Character's name: " + name);
+       System.out.println();
+
+       //Generate number for Spirituality Points and print the result
+       SpiritualityPoints = r.nextInt(10) + 1;
+       SpiritualityPoints = SpiritualityPoints + 10;
+       System.out.println("Spirituality Points: " + SpiritualityPoints);
+       System.out.println();
+
+       //Print out statment for Weakness
+       System.out.println("Weakness: " + Weakness);
+       System.out.println();
+
+       //Print resistances
+       System.out.println("Resistances:");
+       System.out.println("  Lust Resistance: " + ResistLust);
+       System.out.println("  Anger Resistance: " + ResistAnger);
+       System.out.println("  Idolality Resistance: " + ResistIdolality);
+       System.out.println("  Vanity Resistance: " + ResistVanity);
+       System.out.println("  Speech Resistance: " + ResistSpeech);
+       System.out.println("  Physical Resistance: " + ResistPhysical);
+       System.out.println();
+
+       /*TALENTS*/
+       //Generate random numbers for all of the talents and print the results
+       TalentEducation = r.nextDouble(20) + 1;
+       TalentMusic = r.nextDouble(20) + 1;
+       TalentArt = r.nextDouble(20) + 1;
+       TalentWriting = r.nextDouble(20) + 1;
+       TalentSpeaking = r.nextDouble(20) + 1;
+       TalentAthletics = r.nextDouble(20) + 1;
+
+       //Print talents with 2 decimal places
+       System.out.println("Talents:");
+       System.out.println("  Education Talent: " + String.format("%.2f", TalentEducation));
+       System.out.println("  Music Talent: " + String.format("%.2f", TalentMusic));
+       System.out.println("  Art Talent: " + String.format("%.2f", TalentArt));
+       System.out.println("  Writing Talent: " + String.format("%.2f", TalentWriting));
+       System.out.println("  Speaking Talent: " + String.format("%.2f", TalentSpeaking));
+       System.out.println("  Athletics Talent: " + String.format("%.2f", TalentAthletics));
+       System.out.println();
+
+       //Ask for confirmation
+       System.out.println("Press 1 to continue....");
+       continue_game = in.nextInt(); //Get confirmation from user input
+
+       //If it is to continue game
+       if(continue_game == 1){
+        System.out.println("Continuing game... " );
+        System.out.println();
+
+        int randomTemptation = r.nextInt(6) + 1; //Random temptation
+        String randomTemptationString = "";
+
+        //Handle random temptation generated
+        switch (randomTemptation){
+
+          //random temptation = 1
+          case 1:
+              randomTemptationString = "LTempt"; //Lust
+              break;
+
+          //random temptation = 2
+          case 2:
+              randomTemptationString = "ATempt"; //Anger
+              break;
+
+          //random temptation = 3
+          case 3:
+              randomTemptationString = "ITempt"; //Idolatry
+              break;
+
+          //random temptation = 4
+          case 4:
+              randomTemptationString = "VTempt"; //Vanity
+              break;
+
+          //random temptation = 5
+          case 5:
+              randomTemptationString = "STempt"; //Speech
+              break;
+
+          //random temptation = 6
+          case 6:
+            randomTemptationString = "Ptempt"; //Physical
+            break;
+
+        }
+
+        //Print random temptation
+        System.out.println("The randomly selected temptation was: " + randomTemptationString);
+        System.out.println();
+
+        //For loop to generate 100 tiles
+        for(int i = 0; i <= 100; i++){
+
+           //Generate a number between 0 - 20 (based on percentages) to find which tile to place
+           double percentChanceRandom1 = r.nextDouble(100);
+           double percentChanceRandom2 = r.nextDouble(100);
+           double percentChanceRandom3 = r.nextDouble(100);
+           double percentChanceRandom4 = r.nextDouble(100);
+           double percentChanceRandom5 = r.nextDouble(100);
+
+           //System.out.println(percentChanceRandom);
+
+           //Determine the tile square value
+           if(percentChanceRandom1 <= percentChanceLust){
+               tile = "Lust";
+           }
+           else if(percentChanceRandom2 <= percentChanceAnger){
+               tile = "Anger";
+           }
+           else if(percentChanceRandom3  <= percentChanceIdol){
+               tile = "Idolatry";
+           }
+           else if(percentChanceRandom4 <= percentChanceVanity){
+               tile = "Vanity";
+           }
+           else if(percentChanceRandom5 <= percentChanceSpeech){
+               tile = "Speech";
+           }
+           else {
+               tile = "Physical";
+           }
+
+
+           //Print out which tile was chosen
+           System.out.print("Tile: ");
+           System.out.println(tile);
+
+         }//End For
+
+      }//End If
+
+    }//End Test
 
   } //End main
 
