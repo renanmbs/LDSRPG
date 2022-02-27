@@ -309,21 +309,21 @@ public class CharacterCreation
 
        /*TALENTS*/
        //Generate random numbers for all of the talents and print the results
-       TalentEducation = r.nextDouble(20) + 1;
-       TalentMusic = r.nextDouble(20) + 1;
-       TalentArt = r.nextDouble(20) + 1;
-       TalentWriting = r.nextDouble(20) + 1;
-       TalentSpeaking = r.nextDouble(20) + 1;
-       TalentAthletics = r.nextDouble(20) + 1;
+       TalentEducation = r.nextInt(20) + 1;
+       TalentMusic = r.nextInt(20) + 1;
+       TalentArt = r.nextInt(20) + 1;
+       TalentWriting = r.nextInt(20) + 1;
+       TalentSpeaking = r.nextInt(20) + 1;
+       TalentAthletics = r.nextInt(20) + 1;
 
        //Print talents with 2 decimal places
        System.out.println("Talents:");
-       System.out.println("  Education Talent: " + String.format("%.2f", TalentEducation));
-       System.out.println("  Music Talent: " + String.format("%.2f", TalentMusic));
-       System.out.println("  Art Talent: " + String.format("%.2f", TalentArt));
-       System.out.println("  Writing Talent: " + String.format("%.2f", TalentWriting));
-       System.out.println("  Speaking Talent: " + String.format("%.2f", TalentSpeaking));
-       System.out.println("  Athletics Talent: " + String.format("%.2f", TalentAthletics));
+       System.out.println("  Education Talent: " + TalentEducation);
+       System.out.println("  Music Talent: " + TalentMusic);
+       System.out.println("  Art Talent: " + TalentArt);
+       System.out.println("  Writing Talent: " + TalentWriting);
+       System.out.println("  Speaking Talent: " + TalentSpeaking);
+       System.out.println("  Athletics Talent: " + TalentAthletics);
        System.out.println();
 
        //Ask for confirmation
@@ -377,48 +377,60 @@ public class CharacterCreation
         System.out.println("The randomly selected temptation was: " + randomTemptationString);
         System.out.println();
 
-        String[][] emotions = new String[10][10];
-//For loop to generate 100 tiles
-for(int i = 0; i < 10; i++){
-    for(int j = 0; j < 10; j++){
-        double percentChanceRandom1 = r.nextDouble(100);
-        double percentChanceRandom2 = r.nextDouble(100);
-        double percentChanceRandom3 = r.nextDouble(100);
-        double percentChanceRandom4 = r.nextDouble(100);
-        double percentChanceRandom5 = r.nextDouble(100);
+        //Double array to hold 100 tiles
+        String[][] tiles = new String[10][10]; //Array size 10x10
 
-        //System.out.println(percentChanceRandom);
+    /*Generate 100 tiles*/
 
-        //Determine the tile square value
-        if(percentChanceRandom1 <= percentChanceLust){
-            tile = "L";
-        }
-        else if(percentChanceRandom2 <= percentChanceAnger){
-            tile = "A";
-        }
-        else if(percentChanceRandom3  <= percentChanceIdol){
-            tile = "I";
-        }
-        else if(percentChanceRandom4 <= percentChanceVanity){
-            tile = "V";
-        }
-        else if(percentChanceRandom5 <= percentChanceSpeech){
-            tile = "S";
-        }
-        else {
-            tile = "P";
+    //Rows
+    for(int row = 0; row < 10; row++){
+        //Columns
+        for(int column = 0; column < 10; column++){
+
+            //Set percentages
+            double percentChanceRandom1 = r.nextDouble(100);
+            double percentChanceRandom2 = r.nextDouble(100);
+            double percentChanceRandom3 = r.nextDouble(100);
+            double percentChanceRandom4 = r.nextDouble(100);
+            double percentChanceRandom5 = r.nextDouble(100);
+
+            //Determine the tile square value
+            if(percentChanceRandom1 <= percentChanceLust){
+                tile = "L"; //Lust
+            }
+            else if(percentChanceRandom2 <= percentChanceAnger){
+                tile = "A"; //Anger
+            }
+            else if(percentChanceRandom3  <= percentChanceIdol){
+                tile = "I"; //Idolatry
+            }
+            else if(percentChanceRandom4 <= percentChanceVanity){
+                tile = "V"; //Vanity
+            }
+            else if(percentChanceRandom5 <= percentChanceSpeech){
+                tile = "S"; //Speech
+            }
+            else {
+                tile = "P"; //Physical
+            }
+
+            tiles[row][column] = tile; //Populate the array with the tile values
         }
 
-        emotions[i][j] = tile;
     }
-}//End For
 
-for(String[] i: emotions){
-    for(String j: i){
-    System.out.print(j + " ");
+    /*Print grid*/
+    //For all strings in tiles put in a single array
+    for(String[] temporary_tiles: tiles){
+        //For all strings in array temporary_tiles put in a single string
+        for(String tile_string: temporary_tiles){
+
+          System.out.print(tile_string + " "); //Print tile value (tile_string)
+
+        }
+
+        System.out.println(); //Print space
     }
-    System.out.println();
-}
 
       }//End If
 
