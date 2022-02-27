@@ -1,6 +1,6 @@
 /*Character Creation and game Intialization
 Brielle Hours Login: 12 hours
-Renan Hours Login: 7 hours*/
+Renan Hours Login: 16 hours*/
 
 //Import libraries
 import java.io.*;
@@ -377,44 +377,48 @@ public class CharacterCreation
         System.out.println("The randomly selected temptation was: " + randomTemptationString);
         System.out.println();
 
-        //For loop to generate 100 tiles
-        for(int i = 0; i <= 100; i++){
+        String[][] emotions = new String[10][10];
+//For loop to generate 100 tiles
+for(int i = 0; i < 10; i++){
+    for(int j = 0; j < 10; j++){
+        double percentChanceRandom1 = r.nextDouble(100);
+        double percentChanceRandom2 = r.nextDouble(100);
+        double percentChanceRandom3 = r.nextDouble(100);
+        double percentChanceRandom4 = r.nextDouble(100);
+        double percentChanceRandom5 = r.nextDouble(100);
 
-           //Generate a number between 0 - 20 (based on percentages) to find which tile to place
-           double percentChanceRandom1 = r.nextDouble(100);
-           double percentChanceRandom2 = r.nextDouble(100);
-           double percentChanceRandom3 = r.nextDouble(100);
-           double percentChanceRandom4 = r.nextDouble(100);
-           double percentChanceRandom5 = r.nextDouble(100);
+        //System.out.println(percentChanceRandom);
 
-           //System.out.println(percentChanceRandom);
+        //Determine the tile square value
+        if(percentChanceRandom1 <= percentChanceLust){
+            tile = "L";
+        }
+        else if(percentChanceRandom2 <= percentChanceAnger){
+            tile = "A";
+        }
+        else if(percentChanceRandom3  <= percentChanceIdol){
+            tile = "I";
+        }
+        else if(percentChanceRandom4 <= percentChanceVanity){
+            tile = "V";
+        }
+        else if(percentChanceRandom5 <= percentChanceSpeech){
+            tile = "S";
+        }
+        else {
+            tile = "P";
+        }
 
-           //Determine the tile square value
-           if(percentChanceRandom1 <= percentChanceLust){
-               tile = "Lust";
-           }
-           else if(percentChanceRandom2 <= percentChanceAnger){
-               tile = "Anger";
-           }
-           else if(percentChanceRandom3  <= percentChanceIdol){
-               tile = "Idolatry";
-           }
-           else if(percentChanceRandom4 <= percentChanceVanity){
-               tile = "Vanity";
-           }
-           else if(percentChanceRandom5 <= percentChanceSpeech){
-               tile = "Speech";
-           }
-           else {
-               tile = "Physical";
-           }
+        emotions[i][j] = tile;
+    }
+}//End For
 
-
-           //Print out which tile was chosen
-           System.out.print("Tile: ");
-           System.out.println(tile);
-
-         }//End For
+for(String[] i: emotions){
+    for(String j: i){
+    System.out.print(j + " ");
+    }
+    System.out.println();
+}
 
       }//End If
 
