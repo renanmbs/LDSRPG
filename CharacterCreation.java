@@ -335,39 +335,39 @@ public class CharacterCreation
         System.out.println("Continuing game... " );
         System.out.println();
 
-        int randomTemptation = r.nextInt(6) + 1; //Random temptation
+        int randomTemptation = r.nextInt(6); //Random temptation
         String randomTemptationString = "";
 
         //Handle random temptation generated
         switch (randomTemptation){
 
           //random temptation = 1
-          case 1:
+          case 0:
               randomTemptationString = "LTempt"; //Lust
               break;
 
           //random temptation = 2
-          case 2:
+          case 1:
               randomTemptationString = "ATempt"; //Anger
               break;
 
           //random temptation = 3
-          case 3:
+          case 2:
               randomTemptationString = "ITempt"; //Idolatry
               break;
 
           //random temptation = 4
-          case 4:
+          case 3:
               randomTemptationString = "VTempt"; //Vanity
               break;
 
           //random temptation = 5
-          case 5:
+          case 4:
               randomTemptationString = "STempt"; //Speech
               break;
 
           //random temptation = 6
-          case 6:
+          case 5:
             randomTemptationString = "Ptempt"; //Physical
             break;
 
@@ -388,36 +388,46 @@ public class CharacterCreation
         for(int column = 0; column < 10; column++){
 
             //Set percentages
-            double percentChanceRandom1 = r.nextDouble(100);
-            double percentChanceRandom2 = r.nextDouble(100);
-            double percentChanceRandom3 = r.nextDouble(100);
-            double percentChanceRandom4 = r.nextDouble(100);
-            double percentChanceRandom5 = r.nextDouble(100);
+            int tile_chosen = r.nextInt(6);
 
-            //Determine the tile square value
-            if(percentChanceRandom1 <= percentChanceLust){
-                tile = "L"; //Lust
-            }
-            else if(percentChanceRandom2 <= percentChanceAnger){
-                tile = "A"; //Anger
-            }
-            else if(percentChanceRandom3  <= percentChanceIdol){
-                tile = "I"; //Idolatry
-            }
-            else if(percentChanceRandom4 <= percentChanceVanity){
-                tile = "V"; //Vanity
-            }
-            else if(percentChanceRandom5 <= percentChanceSpeech){
-                tile = "S"; //Speech
-            }
-            else {
+            //Handle random tile generated
+            switch (tile_chosen){
+
+              //tile = 1
+              case 0:
+                  tile = "L"; //Lust
+                  break;
+
+              //tile = 2
+              case 1:
+                  tile = "A"; //Anger
+                  break;
+
+              //tile = 3
+              case 2:
+                  tile = "I"; //Idolatry
+                  break;
+
+              //tile = 4
+              case 3:
+                  tile = "V"; //Vanity
+                  break;
+
+              //tile = 5
+              case 4:
+                  tile = "S"; //Speech
+                  break;
+
+              //tile = 6
+              case 5:
                 tile = "P"; //Physical
+                break;
             }
 
             tiles[row][column] = tile; //Populate the array with the tile values
         }
 
-    }
+      }
 
     /*Print grid*/
     //For all strings in tiles put in a single array
