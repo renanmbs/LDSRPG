@@ -1,6 +1,6 @@
 /*Character Creation and game Intialization
 Brielle Hours Login: 12 hours
-Renan Hours Login: 16 hours*/
+Renan Hours Login: 18 hours*/
 
 //Import libraries
 import java.io.*;
@@ -143,21 +143,6 @@ public class CharacterCreation
   }//End Roll
 
   //Function to print out a grid
-  static void Grid(){
-
-   int[][] array = new int[10][10]; //Create new 10x10 array
-
-      for(int row = 0; row < 10; row++) //Rows
-      {
-      	for(int col = 0; col < 10; col++) //Columns
-      	{
-      		System.out.print(array[row][col]); //Print grid Row x Columns
-
-         }
-
-         System.out.println(); //Print Space
-      }
-  }//End Grid
 
   //Main function
   public static void main (String[] agrs)
@@ -387,38 +372,38 @@ public class CharacterCreation
         //Columns
         for(int column = 0; column < 10; column++){
 
-            //Set percentages
+            //Randomly generate tiles
             int tile_chosen = r.nextInt(6);
 
             //Handle random tile generated
             switch (tile_chosen){
 
-              //tile = 1
+              //Tile = 1
               case 0:
                   tile = "L"; //Lust
                   break;
 
-              //tile = 2
+              //Tile = 2
               case 1:
                   tile = "A"; //Anger
                   break;
 
-              //tile = 3
+              //Tile = 3
               case 2:
                   tile = "I"; //Idolatry
                   break;
 
-              //tile = 4
+              //Tile = 4
               case 3:
                   tile = "V"; //Vanity
                   break;
 
-              //tile = 5
+              //Tile = 5
               case 4:
                   tile = "S"; //Speech
                   break;
 
-              //tile = 6
+              //Tile = 6
               case 5:
                 tile = "P"; //Physical
                 break;
@@ -427,6 +412,26 @@ public class CharacterCreation
             tiles[row][column] = tile; //Populate the array with the tile values
         }
 
+      }
+
+      /*Overwrite grid with 20 temptations*/
+
+      //Rows
+      for(int row = 0; row < 5; row++){
+        //Columns
+        for(int column = 0; column < 4; column++){
+
+          //Randomly generate tile positions
+          int position_1 = r.nextInt(10);
+          int position_2 = r.nextInt(10);
+
+          //Set tile value
+          tile = "T";
+
+          //Overwrite tiles grid with random position temptations
+          tiles[position_1][position_2] = tile;
+
+        }
       }
 
     /*Print grid*/
