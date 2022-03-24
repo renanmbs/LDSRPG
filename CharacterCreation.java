@@ -440,7 +440,7 @@ public class CharacterCreation
       /*Check for match 3*/
 
       //Loop through rows
-      for (int row = 1; row < tiles.length; row++) {
+      for (int row = 0; row < tiles.length; row++) {
 
         //Loop through columns
         for (int column = 1; column < tiles[row].length - 1; column++) {
@@ -458,7 +458,7 @@ public class CharacterCreation
   for (int row = 1; row < tiles.length-1; row++) {
 
     //Loop through columns
-    for (int column = 1; column < tiles[row].length - 1; column++) {
+    for (int column = 0; column < tiles[row].length; column++) {
 
       //Check match 3 on columns
       if (tiles[row-1][column] == tiles[row][column] && tiles[row][column] == tiles[row+1][column])  {
