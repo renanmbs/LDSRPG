@@ -1,6 +1,6 @@
 /*Character Creation and game Intialization
-Brielle Hours Login: 12 hours
-Renan Hours Login: 18 hours*/
+Brielle Hours Login: 15 hours
+Renan Hours Login: 22 hours*/
 
 //Import libraries
 import java.io.*;
@@ -269,6 +269,9 @@ public class CharacterCreation
        //Holds the value of the tile being placed
        String tile = "";
 
+       String previous_value = "";
+       int match = 0;
+
        System.out.println("Character's name: " + name);
        System.out.println();
 
@@ -434,13 +437,47 @@ public class CharacterCreation
         }
       }
 
+      /*Check for match 3*/
+
+      //Loop through rows
+      for (int row = 1; row < tiles.length; row++) {
+
+        //Loop through columns
+        for (int column = 1; column < tiles[row].length - 1; column++) {
+
+          //Check match 3 on rows
+          if (tiles[row][column-1] == tiles[row][column] && tiles[row][column] == tiles[row][column+1]) {
+              tile = "X"; //Set tile
+              tiles[row][column-1] = tile; //Previous value checked
+              tiles[row][column] = tile; //Current value checked
+              tiles[row][column+1] = tile; //Next value checked
+            }
+      }
+  }
+  //Loop through rows
+  for (int row = 1; row < tiles.length-1; row++) {
+
+    //Loop through columns
+    for (int column = 1; column < tiles[row].length - 1; column++) {
+
+      //Check match 3 on columns
+      if (tiles[row-1][column] == tiles[row][column] && tiles[row][column] == tiles[row+1][column])  {
+        tile = "X"; //Set tile
+        tiles[row-1][column] = tile; //Previous value checked
+        tiles[row][column] = tile; //Current value checked
+        tiles[row+1][column] = tile; //Next value checked
+      }
+    }
+  }
+
     /*Print grid*/
     //For all strings in tiles put in a single array
     for(String[] temporary_tiles: tiles){
+
         //For all strings in array temporary_tiles put in a single string
         for(String tile_string: temporary_tiles){
 
-          System.out.print(tile_string + " "); //Print tile value (tile_string)
+            System.out.print(tile_string + " "); //Print tile value (tile_string)
 
         }
 
