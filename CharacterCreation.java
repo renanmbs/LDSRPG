@@ -1,6 +1,6 @@
 /*Character Creation and game Intialization
 Brielle Hours Login: 15 hours
-Renan Hours Login: 22 hours*/
+Renan Hours Login: 39 hours*/
 
 //Import libraries
 import java.io.*;
@@ -420,24 +420,26 @@ public class CharacterCreation
       /*Overwrite grid with 20 temptations*/
 
       //Rows
-      for(int row = 0; row < 5; row++){
+      for(int row = 0; row < 10; row++){
         //Columns
-        for(int column = 0; column < 4; column++){
+        for(int column = 0; column < 10; column++){
 
-          //Randomly generate tile positions
-          int position_1 = r.nextInt(10);
-          int position_2 = r.nextInt(10);
+          for(int number_of_temptations = 0; number_of_temptations == 25; number_of_temptations++){
 
-          //Set tile value
-          tile = "T";
+            //Randomly generate tile positions
+            int position_1 = r.nextInt(10);
+            int position_2 = r.nextInt(10);
 
-          //Overwrite tiles grid with random position temptations
-          tiles[position_1][position_2] = tile;
+            //Set tile value
+            tile = "T";
 
+            //Overwrite tiles grid with random position temptations
+            tiles[position_1][position_2] = tile;
+          }
         }
       }
 
-      /*Check for match 3*/
+      /*Check for matches in column*/
 
       //Loop through rows
       for (int row = 0; row < tiles.length; row++) {
@@ -445,30 +447,169 @@ public class CharacterCreation
         //Loop through columns
         for (int column = 1; column < tiles[row].length - 1; column++) {
 
-          //Check match 3 on rows
-          if (tiles[row][column-1] == tiles[row][column] && tiles[row][column] == tiles[row][column+1]) {
-              tile = "X"; //Set tile
-              tiles[row][column-1] = tile; //Previous value checked
-              tiles[row][column] = tile; //Current value checked
-              tiles[row][column+1] = tile; //Next value checked
-            }
-      }
-  }
+          //Check for boundary for match 3
+          if(column <= 8){
+
+            tile = "X"; //Set tile
+
+            //Check for Match 3
+            if (tiles[row][column-1] == tiles[row][column] && tiles[row][column] == tiles[row][column+1]) {
+
+              //Check boundary match 4
+              if(column <= 7){
+
+                //Check match 4
+                if (tiles[row][column-1] == tiles[row][column] && tiles[row][column] == tiles[row][column+1] && tiles[row][column] == tiles[row][column+2]) {
+
+                  //Check for boundary for match 5
+                  if(column <= 6){
+
+                    //Check match 5
+                    if (tiles[row][column-1] == tiles[row][column] && tiles[row][column] == tiles[row][column+1] && tiles[row][column] == tiles[row][column+2]) {
+                      tiles[row][column-1] = tile; //Previous value checked
+                      tiles[row][column] = tile; //Current value checked
+                      tiles[row][column+1] = tile; //Next value checked
+                      tiles[row][column+2] = tile; //Next value checked
+                      tiles[row][column+3] = tile; //Next value checked
+                    } //Check match
+
+                    //No match 5, only match 4
+                    else{
+                      tiles[row][column-1] = tile; //Previous value checked
+                      tiles[row][column] = tile; //Current value checked
+                      tiles[row][column+1] = tile; //Next value checked
+                      tiles[row][column+2] = tile; //Next value checked
+                    } //Only match 4
+
+                  }//Boundary match 5
+
+                  //Still in bound for match 4, but not match 5
+                  else{
+                    tiles[row][column-1] = tile; //Previous value checked
+                    tiles[row][column] = tile; //Current value checked
+                    tiles[row][column+1] = tile; //Next value checked
+                    tiles[row][column+2] = tile; //Next value checked
+                  } //Out of boundaries
+
+                } //Check match 4
+
+                //No match 4, only match 3
+                else{
+                  tiles[row][column-1] = tile; //Previous value checked
+                  tiles[row][column] = tile; //Current value checked
+                  tiles[row][column+1] = tile; //Next value checked
+                } //Only match 3
+
+              } //Check boundary match 4
+
+              //Still in bound for match 3, but not match 4
+              else{
+                tiles[row][column-1] = tile; //Previous value checked
+                tiles[row][column] = tile; //Current value checked
+                tiles[row][column+1] = tile; //Next value checked
+              } //Still Bound match 3
+
+            } //Check match 3
+
+            //If there is no match 3
+            else{
+              continue; //Continue
+            } //No match 3
+
+          } //Boundary match 3
+
+          //Out of boundary for match 3
+          else{
+            break;
+          } //Out of boundaries
+      } //Column
+    } //Rows
+
+  /*Check for matches in rows*/
+
   //Loop through rows
   for (int row = 1; row < tiles.length-1; row++) {
 
     //Loop through columns
     for (int column = 0; column < tiles[row].length; column++) {
 
-      //Check match 3 on columns
-      if (tiles[row-1][column] == tiles[row][column] && tiles[row][column] == tiles[row+1][column])  {
+      //Check for boundary for match 3
+      if(row <= 8){
+
         tile = "X"; //Set tile
-        tiles[row-1][column] = tile; //Previous value checked
-        tiles[row][column] = tile; //Current value checked
-        tiles[row+1][column] = tile; //Next value checked
-      }
-    }
-  }
+
+        //Check for Match 3
+        if (tiles[row-1][column] == tiles[row][column] && tiles[row][column] == tiles[row+1][column]) {
+
+          //Check boundary match 4
+          if(row <= 7){
+
+            //Check match 4
+            if (tiles[row-1][column] == tiles[row][column] && tiles[row][column] == tiles[row+1][column] && tiles[row][column] == tiles[row+2][column]) {
+
+              //Check for boundary for match 5
+              if(row <= 6){
+
+                //Check match 5
+                if (tiles[row-1][column] == tiles[row][column] && tiles[row][column] == tiles[row+1][column] && tiles[row][column] == tiles[row+2][column] && tiles[row][column] == tiles[row+3][column]) {
+                  tiles[row-1][column] = tile; //Previous value checked
+                  tiles[row][column] = tile; //Current value checked
+                  tiles[row+1][column] = tile; //Next value checked
+                  tiles[row+2][column] = tile; //Next value checked
+                  tiles[row+3][column] = tile; //Next value checked
+                } //Check match
+
+                //No match 5, only match 4
+                else{
+                  tiles[row-1][column] = tile; //Previous value checked
+                  tiles[row][column] = tile; //Current value checked
+                  tiles[row+1][column] = tile; //Next value checked
+                  tiles[row+2][column] = tile; //Next value checked
+                } //Only match 4
+
+              }//Boundary match 5
+
+              //Still in bound for match 4, but not match 5
+              else{
+                tiles[row-1][column] = tile; //Previous value checked
+                tiles[row][column] = tile; //Current value checked
+                tiles[row+1][column] = tile; //Next value checked
+                tiles[row+2][column] = tile; //Next value checked
+              } //Out of boundaries
+
+            } //Check match 4
+
+            //No match 4, only match 3
+            else{
+              tiles[row-1][column] = tile; //Previous value checked
+              tiles[row][column] = tile; //Current value checked
+              tiles[row+1][column] = tile; //Next value checked
+            } //Only match 3
+
+          } //Check boundary match 4
+
+          //Still in bound for match 3, but not match 4
+          else{
+            tiles[row-1][column] = tile; //Previous value checked
+            tiles[row][column] = tile; //Current value checked
+            tiles[row+1][column] = tile; //Next value checked
+          } //Still Bound match 3
+
+        } //Check match 3
+
+        //If there is no match 3
+        else{
+          continue; //Continue
+        } //No match 3
+
+      } //Boundary match 3
+
+      //Out of boundary for match 3
+      else{
+        break;
+      } //Out of boundaries
+    } //Column
+  } //Row
 
     /*Print grid*/
     //For all strings in tiles put in a single array
