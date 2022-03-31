@@ -65,6 +65,54 @@ public class CharacterCreation
 
   }
 
+  //Function to roll tiles
+  static String roll_tiles(){
+
+    //Variables
+    String tile = ""; //String to hold tile
+    Random r = new Random (); //Generate random number
+
+    //Randomly generate tiles
+    int tile_chosen = r.nextInt(6);
+
+    //Handle random tile generated
+    switch (tile_chosen){
+
+      //Tile = 1
+      case 0:
+          tile = "L"; //Lust
+          break;
+
+      //Tile = 2
+      case 1:
+          tile = "A"; //Anger
+          break;
+
+      //Tile = 3
+      case 2:
+          tile = "I"; //Idolatry
+          break;
+
+      //Tile = 4
+      case 3:
+          tile = "V"; //Vanity
+          break;
+
+      //Tile = 5
+      case 4:
+          tile = "S"; //Speech
+          break;
+
+      //Tile = 6
+      case 5:
+        tile = "P"; //Physical
+        break;
+    }
+
+    return tile; //Return tile
+
+  }
+
   //Function to roll information about player
   static void roll() {
 
@@ -141,8 +189,6 @@ public class CharacterCreation
     System.out.println();
 
   }//End Roll
-
-  //Function to print out a grid
 
   //Main function
   public static void main (String[] agrs)
@@ -368,6 +414,7 @@ public class CharacterCreation
         //Double array to hold 100 tiles
         String[][] tiles = new String[10][10]; //Array size 10x10
 
+
     /*Generate 100 tiles*/
 
     //Rows
@@ -375,42 +422,8 @@ public class CharacterCreation
         //Columns
         for(int column = 0; column < 10; column++){
 
-            //Randomly generate tiles
-            int tile_chosen = r.nextInt(6);
-
-            //Handle random tile generated
-            switch (tile_chosen){
-
-              //Tile = 1
-              case 0:
-                  tile = "L"; //Lust
-                  break;
-
-              //Tile = 2
-              case 1:
-                  tile = "A"; //Anger
-                  break;
-
-              //Tile = 3
-              case 2:
-                  tile = "I"; //Idolatry
-                  break;
-
-              //Tile = 4
-              case 3:
-                  tile = "V"; //Vanity
-                  break;
-
-              //Tile = 5
-              case 4:
-                  tile = "S"; //Speech
-                  break;
-
-              //Tile = 6
-              case 5:
-                tile = "P"; //Physical
-                break;
-            }
+            //Set tile to the return value of 'roll tiles' function
+            tile = roll_tiles();
 
             tiles[row][column] = tile; //Populate the array with the tile values
         }
@@ -419,24 +432,19 @@ public class CharacterCreation
 
       /*Overwrite grid with 20 temptations*/
 
-      //Rows
-      for(int row = 0; row < 10; row++){
-        //Columns
-        for(int column = 0; column < 10; column++){
+      //Number of temptations
+      for(int temptation_position = 0; temptation_position == 20; temptation_position++){
 
-          for(int number_of_temptations = 0; number_of_temptations == 25; number_of_temptations++){
+          //Set tile value
+          tile = "T";
 
-            //Randomly generate tile positions
-            int position_1 = r.nextInt(10);
-            int position_2 = r.nextInt(10);
+          //Randomly generate tile positions
+          int position_1 = r.nextInt(10);
+          int position_2 = r.nextInt(10);
 
-            //Set tile value
-            tile = "T";
+          //Overwrite tiles grid with random position temptations
+          tiles[position_1][position_2] = tile;
 
-            //Overwrite tiles grid with random position temptations
-            tiles[position_1][position_2] = tile;
-          }
-        }
       }
 
       /*Check for matches in column*/
@@ -479,6 +487,7 @@ public class CharacterCreation
                       tiles[row][column] = tile; //Current value checked
                       tiles[row][column+1] = tile; //Next value checked
                       tiles[row][column+2] = tile; //Next value checked
+                      break;
                     } //Only match 4
 
                   }//Boundary match 5
@@ -489,6 +498,7 @@ public class CharacterCreation
                     tiles[row][column] = tile; //Current value checked
                     tiles[row][column+1] = tile; //Next value checked
                     tiles[row][column+2] = tile; //Next value checked
+                    break;
                   } //Out of boundaries
 
                 } //Check match 4
@@ -498,6 +508,7 @@ public class CharacterCreation
                   tiles[row][column-1] = tile; //Previous value checked
                   tiles[row][column] = tile; //Current value checked
                   tiles[row][column+1] = tile; //Next value checked
+                  break;
                 } //Only match 3
 
               } //Check boundary match 4
@@ -507,6 +518,7 @@ public class CharacterCreation
                 tiles[row][column-1] = tile; //Previous value checked
                 tiles[row][column] = tile; //Current value checked
                 tiles[row][column+1] = tile; //Next value checked
+                break;
               } //Still Bound match 3
 
             } //Check match 3
@@ -611,7 +623,10 @@ public class CharacterCreation
     } //Column
   } //Row
 
-    /*Print grid*/
+  System.out.println("Grid with repeating tiles:"); //Print info
+  System.out.println(); //Print space
+
+    /*Print grid with repeating tiles*/
     //For all strings in tiles put in a single array
     for(String[] temporary_tiles: tiles){
 
@@ -624,6 +639,72 @@ public class CharacterCreation
 
         System.out.println(); //Print space
     }
+
+    /*New grid removing X*/
+    System.out.println(); //Print space
+    System.out.println("Grid without repeating tiles:"); //Print info
+    System.out.println(); //Print space
+
+    //Loop through rows
+    for(int row = 0; row < 10; row++){
+        //Columns
+        for(int column = 0; column < 10; column++){
+
+            //Check for X
+            if(tiles[row][column] == "X"){
+
+              tile = roll_tiles(); //Reroll tiles
+
+              //Check for boundary for match 3 in rows
+              if(1 <= row && row <= 8){
+                //If there is a match 3 on rows again, reroll
+                if (tiles[row-1][column] == tiles[row][column] && tiles[row][column] == tiles[row+1][column]) {
+                  tile = roll_tiles(); //Reroll tiles
+                }
+              }
+
+              //Check for boundary for match 3 in columns
+              if(1 <= column && column <= 8){
+                //If there is a match 3 on columns again, reroll
+                if (tiles[row][column-1] == tiles[row][column] && tiles[row][column] == tiles[row][column+1]) {
+                  tile = roll_tiles(); //Reroll tiles
+                }
+              }
+
+              tiles[row][column] = tile; //Populate the array with the tile values
+            }
+        }
+    }
+
+
+    /*Print grid with no repeating tile*/
+    //For all strings in tiles put in a single array
+    for(String[] temporary_tiles: tiles){
+
+        //For all strings in array temporary_tiles put in a single string
+        for(String tile_string: temporary_tiles){
+
+            System.out.print(tile_string + " "); //Print tile value (tile_string)
+
+        }
+
+        System.out.println(); //Print space
+      }
+
+    /*Print information to start game*/
+
+    System.out.println(); //Print space
+
+    System.out.print("Loading"); //Print info
+
+    //Put 5 dots after loading
+    for(int dot = 0; dot < 5; dot++){
+        System.out.print("."); //Print dot
+      }
+
+    System.out.println(); //Print space
+    System.out.println("Ready to start the game"); //Print info
+    System.out.println(); //Print space
 
       }//End If
 
