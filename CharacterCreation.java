@@ -447,6 +447,26 @@ public class CharacterCreation
 
       }
 
+      /*Print grid without checking for matches*/
+
+      System.out.println(); //Print space
+      System.out.println("Grid without modification on tiles:"); //Print info
+      System.out.println(); //Print space
+
+        /*Print grid with repeating tiles*/
+        //For all strings in tiles put in a single array
+        for(String[] temporary_tiles: tiles){
+
+            //For all strings in array temporary_tiles put in a single string
+            for(String tile_string: temporary_tiles){
+
+                System.out.print(tile_string + " "); //Print tile value (tile_string)
+
+            }
+
+            System.out.println(); //Print space
+        }
+
       /*Check for matches in column*/
 
       //Loop through rows
@@ -623,6 +643,7 @@ public class CharacterCreation
     } //Column
   } //Row
 
+  System.out.println(); //Print space
   System.out.println("Grid with repeating tiles:"); //Print info
   System.out.println(); //Print space
 
