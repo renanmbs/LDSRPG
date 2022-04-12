@@ -433,7 +433,7 @@ public class CharacterCreation
       /*Overwrite grid with 20 temptations*/
 
       //Number of temptations
-      for(int temptation_position = 0; temptation_position == 20; temptation_position++){
+      for(int temptation_position = 0; temptation_position < 20; temptation_position++){
 
           //Set tile value
           tile = "T";
@@ -493,7 +493,7 @@ public class CharacterCreation
                   if(column <= 6){
 
                     //Check match 5
-                    if (tiles[row][column-1] == tiles[row][column] && tiles[row][column] == tiles[row][column+1] && tiles[row][column] == tiles[row][column+2]) {
+                    if (tiles[row][column-1] == tiles[row][column] && tiles[row][column] == tiles[row][column+1] && tiles[row][column] == tiles[row][column+2] && tiles[row][column] == tiles[row+3][column]){
                       tiles[row][column-1] = tile; //Previous value checked
                       tiles[row][column] = tile; //Current value checked
                       tiles[row][column+1] = tile; //Next value checked
@@ -588,7 +588,7 @@ public class CharacterCreation
                   tiles[row][column] = tile; //Current value checked
                   tiles[row+1][column] = tile; //Next value checked
                   tiles[row+2][column] = tile; //Next value checked
-                  tiles[row+3][column] = tile; //Next value checked
+                  break;
                 } //Check match
 
                 //No match 5, only match 4
@@ -597,6 +597,7 @@ public class CharacterCreation
                   tiles[row][column] = tile; //Current value checked
                   tiles[row+1][column] = tile; //Next value checked
                   tiles[row+2][column] = tile; //Next value checked
+                  break;
                 } //Only match 4
 
               }//Boundary match 5
@@ -607,6 +608,7 @@ public class CharacterCreation
                 tiles[row][column] = tile; //Current value checked
                 tiles[row+1][column] = tile; //Next value checked
                 tiles[row+2][column] = tile; //Next value checked
+                break;
               } //Out of boundaries
 
             } //Check match 4
@@ -616,6 +618,7 @@ public class CharacterCreation
               tiles[row-1][column] = tile; //Previous value checked
               tiles[row][column] = tile; //Current value checked
               tiles[row+1][column] = tile; //Next value checked
+              break;
             } //Only match 3
 
           } //Check boundary match 4
@@ -625,6 +628,7 @@ public class CharacterCreation
             tiles[row-1][column] = tile; //Previous value checked
             tiles[row][column] = tile; //Current value checked
             tiles[row+1][column] = tile; //Next value checked
+            break;
           } //Still Bound match 3
 
         } //Check match 3
