@@ -1,6 +1,6 @@
 /*Character Creation and game Intialization
 Brielle Hours Login: 15 hours
-Renan Hours Login: 39 hours*/
+Renan Hours Login: 45 hours*/
 
 //Import libraries
 import java.io.*;
@@ -478,10 +478,12 @@ public class CharacterCreation
           //Check for boundary for match 3
           if(column <= 8){
 
-            tile = "X"; //Set tile
+            //tile = "X"; //Set tile
 
             //Check for Match 3
             if (tiles[row][column-1] == tiles[row][column] && tiles[row][column] == tiles[row][column+1]) {
+
+              tile = "X"; //Set tile
 
               //Check boundary match 4
               if(column <= 7){
@@ -493,7 +495,7 @@ public class CharacterCreation
                   if(column <= 6){
 
                     //Check match 5
-                    if (tiles[row][column-1] == tiles[row][column] && tiles[row][column] == tiles[row][column+1] && tiles[row][column] == tiles[row][column+2] && tiles[row][column] == tiles[row+3][column]){
+                    if (tiles[row][column-1] == tiles[row][column] && tiles[row][column] == tiles[row][column+1] && tiles[row][column] == tiles[row][column+2] && tiles[row][column] == tiles[row][column+3]){
                       tiles[row][column-1] = tile; //Previous value checked
                       tiles[row][column] = tile; //Current value checked
                       tiles[row][column+1] = tile; //Next value checked
@@ -568,10 +570,12 @@ public class CharacterCreation
       //Check for boundary for match 3
       if(row <= 8){
 
-        tile = "X"; //Set tile
+        //tile = "X"; //Set tile
 
         //Check for Match 3
         if (tiles[row-1][column] == tiles[row][column] && tiles[row][column] == tiles[row+1][column]) {
+
+          tile = "X"; //Set tile
 
           //Check boundary match 4
           if(row <= 7){
