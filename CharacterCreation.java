@@ -478,8 +478,6 @@ public class CharacterCreation
           //Check for boundary for match 3
           if(column <= 8){
 
-            //tile = "X"; //Set tile
-
             //Check for Match 3
             if (tiles[row][column-1] == tiles[row][column] && tiles[row][column] == tiles[row][column+1]) {
 
@@ -570,8 +568,6 @@ public class CharacterCreation
       //Check for boundary for match 3
       if(row <= 8){
 
-        //tile = "X"; //Set tile
-
         //Check for Match 3
         if (tiles[row-1][column] == tiles[row][column] && tiles[row][column] == tiles[row+1][column]) {
 
@@ -592,6 +588,7 @@ public class CharacterCreation
                   tiles[row][column] = tile; //Current value checked
                   tiles[row+1][column] = tile; //Next value checked
                   tiles[row+2][column] = tile; //Next value checked
+                  tiles[row+3][column] = tile; //Next value checked
                   break;
                 } //Check match
 
