@@ -24,7 +24,8 @@
 
 <h2>Pictures</h2>
 <h4>Menu</h4>
-<img width="437" alt="Screen Shot 2022-08-15 at 3 40 02 PM" src="https://user-images.githubusercontent.com/38012979/184725512-5ac06bb2-cda2-436e-9324-1de1e10ee4da.png">
+<img width="535" alt="184725517-54fbdc4e-f422-4ee4-94b7-b7053c1c6ddf" src="https://github.com/renanmbs/LDSRPG/assets/38012979/a31a8776-9e55-4189-a946-59dce1323c1a">
+
 
 <h4>New Player and Randomly Generated Values</h4>
 <img width="535" alt="Screen Shot 2022-08-15 at 3 40 20 PM" src="https://user-images.githubusercontent.com/38012979/184725517-54fbdc4e-f422-4ee4-94b7-b7053c1c6ddf.png">
